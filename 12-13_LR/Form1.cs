@@ -30,14 +30,14 @@ namespace _12_13_LR
             int arraySize = (int)numericUpDown1.Value;
             int[] array = GenerateRandomArray(arraySize);
 
-            // Сортировка методом прямого обмена
+            // сортировка методом прямого обмена
             var bubbleSortResult = BubbleSort(array.Clone() as int[]);
             dataGridView1.Rows[0].Cells[2].Value = bubbleSortResult.Comparisons;
             dataGridView1.Rows[0].Cells[3].Value = bubbleSortResult.Swaps;
             dataGridView1.Rows[0].Cells[4].Value = bubbleSortResult.TimeElapsed.TotalMilliseconds;
             dataGridView1.Rows[0].Cells[5].Value = IsSorted(bubbleSortResult.SortedArray);
 
-            // Сортировка методом прямого выбора
+            // сортировка методом прямого выбора
             var selectionSortResult = SelectionSort(array.Clone() as int[]);
             dataGridView1.Rows[1].Cells[2].Value = selectionSortResult.Comparisons;
             dataGridView1.Rows[1].Cells[3].Value = selectionSortResult.Swaps;
@@ -106,13 +106,11 @@ namespace _12_13_LR
                         minIndex = j;
                     }
                 }
-                if (minIndex != i)
-                {
-                    int temp = array[i];
-                    array[i] = array[minIndex];
-                    array[minIndex] = temp;
-                    swaps++;
-                }
+                // Всегда выполняем перестановку
+                int temp = array[i];
+                array[i] = array[minIndex];
+                array[minIndex] = temp;
+                swaps++;
             }
 
             stopwatch.Stop();
